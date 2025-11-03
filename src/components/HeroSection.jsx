@@ -1,12 +1,21 @@
 // src/components/HeroSection.jsx
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function HeroSection() {
 
   // --- Styles ---
+  // Responsive: we'll adjust height for small screens
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   const heroStyle = {
-    height: '100vh', // Full screen height
+    height: isMobile ? '70vh' : '100vh', // Full screen height on desktop, shorter on mobile
     width: '100%',
     position: 'relative', // For positioning children
     display: 'flex',
@@ -19,13 +28,15 @@ function HeroSection() {
 
   const videoStyle = {
     position: 'absolute',
-    top: '50%',
+    top: 0,
     left: '50%',
-    width: '100%',
+    width: '100vw',
     height: '100%',
-    objectFit: 'cover', // Covers the whole screen
-    transform: 'translate(-50%, -50%)',
+    minHeight: '100%',
+    // objectFit: 'cover', // Covers the whole area
+    transform: 'translateX(-50%)',
     zIndex: 1, // Behind content
+    pointerEvents: 'none', // Prevent accidental interaction on mobile
   };
 
   const overlayStyle = {
@@ -47,7 +58,7 @@ function HeroSection() {
   };
 
   const headingStyle = {
-    fontSize: '5rem', // Big title
+    fontSize: isMobile ? '2rem' : '5rem', // smaller on mobile
     fontWeight: 'bold',
     marginBottom: '1rem',
     background: 'linear-gradient(90deg, #00c1ff, #e000ff)',
@@ -56,30 +67,32 @@ function HeroSection() {
   };
 
   const pStyle = {
-    fontSize: '1.5rem',
+    fontSize: isMobile ? '1rem' : '1.5rem',
     color: '#eee',
     maxWidth: '600px',
   };
 
   const scrollIconStyle = {
     position: 'absolute',
-    bottom: '40px',
+    bottom: isMobile ? '20px' : '40px',
     left: '50%',
     transform: 'translateX(-50%)',
     zIndex: 3,
     color: '#fff',
+    width: '200px',
+    textAlign: 'center',
   };
 
   const chevronStyle = {
-    width: '24px',
-    height: '24px',
+    width: isMobile ? '18px' : '24px',
+    height: isMobile ? '18px' : '24px',
   };
 
   // ref for the background video so we can control playback
   const videoRef = useRef(null);
 
   return (
-    <div style={heroStyle}>
+    <div className="hero" style={heroStyle}>
       {/* 1. The Video Background */}
       <video
         ref={videoRef}

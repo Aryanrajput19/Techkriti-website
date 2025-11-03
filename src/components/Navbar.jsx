@@ -25,6 +25,14 @@ function Navbar() {
     };
   }, []); // Empty array means this effect runs only once on mount
 
+  // Responsive: detect small screens to adjust spacing & logo size
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   // 4. Define our "variants" for animation
   const navVariants = {
     // This is the style at the top of the page
@@ -64,26 +72,38 @@ function Navbar() {
     // 5. Change <nav> to <motion.nav> and add animation props
     <motion.nav
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        zIndex: 10,
-        display: 'flex',
-        gap: '1rem',
-        padding: '1.5rem 2rem',
-      }}
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 10,
+          display: 'flex',
+          gap: isMobile ? '0.75rem' : '1rem',
+          padding: isMobile ? '0.75rem 1rem' : '1.5rem 2rem',
+          alignItems: 'center',
+          flexWrap: 'wrap', // <-- FIX 1: Allow wrapping
+        }}
       variants={navVariants}
       animate={isScrolled ? 'scrolled' : 'top'} // Animate based on state
       transition={{ duration: 0.3, ease: 'easeInOut' }} // Animation speed
     >
       {/* Logo image from public/logo.png (clickable, links to home) */}
       <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Techkriti Home">
-        <img src="/logo.png" alt="Techकृति 2.O" style={{ height: '5rem', width: 'auto' }} />
+        <img src="/logo.png" alt="Techकृति 2.O" style={{ height: isMobile ? '3rem' : '5rem', width: 'auto' }} />
       </Link>
       
       {/* This is the container for the right-side links */}
-      <div style={{ marginLeft: 'auto', display: 'flex', gap: '2rem' }}>
+      <div 
+        className="nav-links" 
+        style={{ 
+          display: 'flex', 
+          gap: isMobile ? '1rem' : '2rem', 
+          alignItems: 'center', 
+          flexWrap: 'wrap',
+          flexGrow: 1, // <-- FIX 2: Allow to grow
+          justifyContent: 'flex-end', // <-- FIX 3: Push links to the right
+        }}
+      >
         
         {/* 6. Wrap each link in a motion.div for animation */}
         <motion.div
@@ -119,11 +139,10 @@ function Navbar() {
           <a href="/#schedule" style={linkStyle}>Schedule</a>
         </motion.div>
 
-<motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
+        <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
           <Link to="/contact" style={linkStyle}>Contact</Link>
         </motion.div>
 
-    
       </div>
     </motion.nav>
   );

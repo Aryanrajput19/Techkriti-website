@@ -6,5 +6,5 @@ export const galleryImages = [
   { id: 3, src: '/gallery3.jpg' },
   { id: 4, src: '/gallery4.jpg' },
   { id: 5, src: '/gallery5.jpg' },
-  { id: 6, src: '/gallery6.jpg' },
+  { id: 6, src: '/gallery7.jpg' },
 ];

@@ -36,7 +36,7 @@ function ContactPage() {
       </motion.a>
       
       <motion.a 
-        href="#" 
+        href="https://www.linkedin.com/company/techkriti-kashi/" 
         style={linkBoxStyle} 
         whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px 0px #00c1ff" }}
       >

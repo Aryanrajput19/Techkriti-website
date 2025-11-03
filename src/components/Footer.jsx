@@ -131,7 +131,7 @@ function Footer() {
             <a href="https://www.instagram.com/tech_kriti.kashi?igsh=MXFocmFlaDdqemx5Mw==" style={iconStyle} onMouseEnter={(e) => handleIconHover(e, '#e000ff')} onMouseLeave={handleIconLeave} aria-label="Instagram">
               <FaInstagram />
             </a>
-            <a href="https://www.linkedin.com/company/tech%E0%A4%95%E0%A5%83%E0%A4%A4%E0%A4%BF-2025/" style={iconStyle} onMouseEnter={(e) => handleIconHover(e, '#00c1ff')} onMouseLeave={handleIconLeave} aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/techkriti-kashi/" style={iconStyle} onMouseEnter={(e) => handleIconHover(e, '#00c1ff')} onMouseLeave={handleIconLeave} aria-label="LinkedIn">
               <FaLinkedin />
             </a>
             
