@@ -17,10 +17,10 @@ function EventDetailPage() {
 
   // --- STYLES ---
   const pageStyle = { padding: '0 0 4rem 0', minHeight: '100vh' };
-  const bannerStyle = { height: '60vh', width: '100%', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '3rem', color: '#fff', overflow: 'hidden' };
+  const bannerStyle = { height: '60vh', width: '100%', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '3rem', color: '#fff', overflow: 'hidden' };
   const bannerImageStyle = { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 };
   const bannerOverlayStyle = { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%)', zIndex: 2 };
-  const bannerContentStyle = { position: 'relative', zIndex: 3, maxWidth: '1200px', margin: '0 auto', width: '100%' };
+  const bannerContentStyle = { position: 'relative', zIndex: 3, maxWidth: '1200px', margin: '0 auto', width: '100%', textAlign: 'center' };
   const contentContainerStyle = { maxWidth: '1200px', margin: '3rem auto 0 auto', padding: '0 2rem' };
   
   const detailsGridStyle = {

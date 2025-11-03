@@ -14,7 +14,7 @@ function Footer() {
     borderTop: '1px solid #333',
     position: 'relative',
     zIndex: 1,
-    textAlign: 'left', // Change from 'center' to 'left'
+    textAlign: 'center',
   };
 
   // The new grid container
@@ -32,6 +32,7 @@ function Footer() {
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
+    alignItems: 'center',
   };
 
   // Style for column titles (e.g., "QUICK LINKS")

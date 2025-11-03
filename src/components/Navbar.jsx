@@ -3,57 +3,71 @@
 // 1. Import React Hooks and Framer Motion
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence
+import { FaBars, FaTimes } from 'react-icons/fa'; // Import icons
+import MobileMenu from './MobileMenu'; // Import the new component
 
 function Navbar() {
-  // 2. Add state to track scroll position
+  // --- STATE ---
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // New state for mobile menu
 
-  // 3. Add a scroll event listener
+  // --- EFFECTS ---
+
+  // Effect for scroll
   useEffect(() => {
     const handleScroll = () => {
-      // Set state to 'true' if scrolled more than 50px, else 'false'
       setIsScrolled(window.scrollY > 50);
     };
-
-    // Add the listener
     window.addEventListener('scroll', handleScroll);
-
-    // Clean up the listener when the component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // Empty array means this effect runs only once on mount
+  }, []);
 
-  // Responsive: detect small screens to adjust spacing & logo size
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  // Effect for mobile detection
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
+    onResize(); // Check on initial load
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // 4. Define our "variants" for animation
+  // Effect to lock scrolling when menu is open
+  useEffect(() => {
+    if (isMenuOpen && isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen, isMobile]);
+
+  // --- STYLES ---
+
+  // Animation variants for the nav
   const navVariants = {
-    // This is the style at the top of the page
     top: {
-      backgroundColor: 'rgba(26, 26, 26, 0.0)', // Fully transparent
+      backgroundColor: 'rgba(26, 26, 26, 0.0)',
       backdropFilter: 'blur(0px)',
       borderBottom: '1px solid rgba(51, 51, 51, 0.0)',
     },
-    // This is the style when scrolled down
     scrolled: {
-      backgroundColor: 'rgba(26, 26, 26, 0.7)', // The "glass" effect
+      backgroundColor: 'rgba(26, 26, 26, 0.7)',
       backdropFilter: 'blur(10px)',
       borderBottom: '1px solid rgba(51, 51, 51, 1.0)',
     },
   };
 
-  // Animation variants for the nav links
+  // Animation variants for desktop links
   const linkItemVariants = {
     hover: {
-      y: -3, // Move up slightly
-      color: '#00c1ff', // Change color to our accent
+      y: -3,
+      color: '#00c1ff',
       transition: { type: 'spring', stiffness: 300 }
     },
     tap: {
@@ -61,90 +75,100 @@ function Navbar() {
     }
   };
   
-  // Base style for links
+  // Base style for desktop links
   const linkStyle = {
     color: '#fff',
     textDecoration: 'none',
     fontSize: '1.1rem'
   };
 
+  // Style for the hamburger icon
+  const hamburgerIconStyle = {
+    fontSize: '1.5rem',
+    color: '#fff',
+    cursor: 'pointer',
+    zIndex: 50, // Ensure it's above the backdrop
+  };
+
   return (
-    // 5. Change <nav> to <motion.nav> and add animation props
-    <motion.nav
-      style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          zIndex: 10,
-          display: 'flex',
-          gap: isMobile ? '0.75rem' : '1rem',
-          padding: isMobile ? '0.75rem 1rem' : '1.5rem 2rem',
-          alignItems: 'center',
-          flexWrap: 'wrap', // <-- FIX 1: Allow wrapping
-        }}
-      variants={navVariants}
-      animate={isScrolled ? 'scrolled' : 'top'} // Animate based on state
-      transition={{ duration: 0.3, ease: 'easeInOut' }} // Animation speed
-    >
-      {/* Logo image from public/logo.png (clickable, links to home) */}
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Techkriti Home">
-        <img src="/logo.png" alt="Techकृति 2.O" style={{ height: isMobile ? '3rem' : '5rem', width: 'auto' }} />
-      </Link>
-      
-      {/* This is the container for the right-side links */}
-      <div 
-        className="nav-links" 
-        style={{ 
-          display: 'flex', 
-          gap: isMobile ? '1rem' : '2rem', 
-          alignItems: 'center', 
-          flexWrap: 'wrap',
-          flexGrow: 1, // <-- FIX 2: Allow to grow
-          justifyContent: 'flex-end', // <-- FIX 3: Push links to the right
-        }}
+    <>
+      <motion.nav
+        style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            zIndex: 50, // Needs to be high
+            display: 'flex',
+            gap: isMobile ? '0.75rem' : '1rem',
+            padding: isMobile ? '0.75rem 1rem' : '1.5rem 2rem',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        variants={navVariants}
+        animate={isScrolled ? 'scrolled' : 'top'}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
+        {/* Logo image */}
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Techkriti Home">
+          <img src="/logo.png" alt="Techकृति 2.O" style={{ height: isMobile ? '3rem' : '5rem', width: 'auto' }} />
+        </Link>
         
-        {/* 6. Wrap each link in a motion.div for animation */}
-        <motion.div
-          variants={linkItemVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          <Link to="/" style={linkStyle}>Home</Link>
-        </motion.div>
+        {/* --- NAVIGATION: This is the main change --- */}
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+          {isMobile ? (
+            // --- MOBILE VIEW: Hamburger Icon ---
+            <motion.div
+              style={hamburgerIconStyle}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              whileTap={{ scale: 0.9 }}
+              key={isMenuOpen ? 'times' : 'bars'} // Add key for enter/exit animation
+              initial={{ opacity: 0, rotate: -90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isMenuOpen ? <FaTimes /> : <FaBars />}
+            </motion.div>
+          ) : (
+            // --- DESKTOP VIEW: Inline Links ---
+            <div 
+              className="nav-links" 
+              style={{ 
+                display: 'flex', 
+                gap: '2rem', 
+                alignItems: 'center', 
+                flexWrap: 'wrap',
+                flexGrow: 1,
+                justifyContent: 'flex-end',
+              }}
+            >
+              <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
+                <Link to="/" style={linkStyle}>Home</Link>
+              </motion.div>
+              <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
+                <Link to="/events" style={linkStyle}>Events</Link>
+              </motion.div>
+              <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
+                <a href="https://Techkriti2.vercel.app/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Register</a>
+              </motion.div>
+              <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
+                <a href="/#schedule" style={linkStyle}>Schedule</a>
+              </motion.div>
+              <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
+                <Link to="/contact" style={linkStyle}>Contact</Link>
+              </motion.div>
+            </div>
+          )}
+        </div>
+      </motion.nav>
 
-        <motion.div
-          variants={linkItemVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          <Link to="/events" style={linkStyle}>Events</Link>
-        </motion.div>
-
-
-        <motion.div
-          variants={linkItemVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          <a href="https://Techkriti2.vercel.app/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Register</a>
-        </motion.div>
-
-        <motion.div
-          variants={linkItemVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          <a href="/#schedule" style={linkStyle}>Schedule</a>
-        </motion.div>
-
-        <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
-          <Link to="/contact" style={linkStyle}>Contact</Link>
-        </motion.div>
-
-      </div>
-    </motion.nav>
+      {/* --- RENDER THE MOBILE MENU --- */}
+      <AnimatePresence>
+        {isMobile && isMenuOpen && (
+          <MobileMenu closeMenu={() => setIsMenuOpen(false)} />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

@@ -10,7 +10,7 @@ function EventCard({ event }) {
     padding: '1.5rem',
     backgroundColor: '#2a2a2a',
     maxWidth: '350px',
-    textAlign: 'left',
+  textAlign: 'center',
     cursor: 'pointer',
     // We add 'overflow: hidden' to contain the image on hover
     overflow: 'hidden', 
@@ -69,7 +69,7 @@ function EventCard({ event }) {
             <img src={event.image} alt={event.title} style={imgStyle} />
           </div>
           <h3 style={{ margin: '1rem 0 0.5rem 0', color: '#00c1ff' }}>{event.title}</h3>
-          <span style={{ background: '#444', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.8rem' }}>
+                  <span style={{ background: '#444', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.8rem', display: 'inline-block' }}>
             {event.category}
           </span>
           <p style={{ marginTop: '1rem', lineHeight: '1.5' }}>{event.description}</p>
