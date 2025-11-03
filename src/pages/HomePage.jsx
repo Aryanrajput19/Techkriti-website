@@ -2,24 +2,24 @@
 import React from 'react';
 import { Slide } from "react-awesome-reveal";
 
-// Import all our components and sections
 import HeroSection from '../components/HeroSection.jsx';
 import CountdownTimer from '../components/CountdownTimer.jsx';
 import RegisterButton from '../components/RegisterButton.jsx';
 import AboutSection from '../components/AboutSection.jsx';
 import EventPreviewSection from '../components/EventPreviewSection.jsx';
-import ScheduleSection from '../components/ScheduleSection.jsx'; // 1. Import new section
 import GallerySection from '../components/GallerySection.jsx';
 
 function HomePage() {
 
-  // ... (mainContentStyle and timerTitleStyle are the same)
+  // This style is for the "Countdown" section
   const mainContentStyle = {
-    padding: '6rem 2rem 4rem 2rem',
+    padding: '3rem 2rem 2rem 2rem',
     textAlign: 'center',
+    // backgroundColor: '#121212',
     position: 'relative',
     zIndex: 1,
   };
+
   const timerTitleStyle = {
     fontSize: '2rem',
     color: '#aaa',
@@ -33,7 +33,13 @@ function HomePage() {
 
       {/* Section 2: The Countdown Timer & Register Button */}
       <div style={mainContentStyle}>
-        {/* ... (Slide content is the same) ... */}
+        <Slide direction="up" triggerOnce>
+          <h2 style={timerTitleStyle}>Fest Begins In:</h2>
+          <CountdownTimer />
+          <div style={{marginTop: '1rem'}}>
+            <RegisterButton />
+          </div>
+        </Slide>
       </div>
       
       {/* Section 3: The "About" Section */}
@@ -42,12 +48,10 @@ function HomePage() {
       {/* Section 4: The "Events Preview" Section */}
       <EventPreviewSection />
 
-      {/* 2. Add the new Schedule Section here */}
-      <ScheduleSection />
-
       {/* Section 5: The "Gallery" Section */}
       <GallerySection />
       
+      {/* We can add a Footer component here later */}
     </div>
   );
 }
