@@ -3,12 +3,12 @@ import React from 'react';
 import { galleryImages } from '../data/gallery.js';
 import { motion } from 'framer-motion';
 import { Slide } from 'react-awesome-reveal';
+import { Link } from 'react-router-dom'; // 1. Import Link
 
 function GallerySection() {
   const sectionStyle = {
-    padding: '3rem 2rem',
+    padding: '6rem 2rem',
     textAlign: 'center',
-    // backgroundColor: '#1a1a1a', // Alternate background color
     position: 'relative',
     zIndex: 1,
   };
@@ -17,7 +17,7 @@ function GallerySection() {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
     gap: '1rem',
-    marginTop: '1rem',
+    marginTop: '2rem',
   };
 
   const imgContainerStyle = {
@@ -39,7 +39,8 @@ function GallerySection() {
         <p>Memories from the previous edition of Techकृति.</p>
         
         <div style={gridStyle}>
-          {galleryImages.map((image) => (
+          {/* 2. Use .slice(0, 6) to show only the first 6 images */}
+          {galleryImages.slice(0, 6).map((image) => (
             <motion.div
               key={image.id}
               style={imgContainerStyle}
@@ -50,6 +51,21 @@ function GallerySection() {
             </motion.div>
           ))}
         </div>
+        
+        {/* 3. Add a "View All" button */}
+        <Link to="/gallery" style={{
+          display: 'inline-block',
+          marginTop: '3rem',
+          padding: '1rem 2rem',
+          border: '1px solid #00c1ff',
+          color: '#00c1ff',
+          borderRadius: '50px',
+          textDecoration: 'none',
+          fontSize: '1.1rem',
+          fontWeight: 'bold'
+        }}>
+          View Full Gallery
+        </Link>
       </Slide>
     </div>
   );

@@ -155,6 +155,9 @@ function Navbar() {
                 <a href="/#schedule" style={linkStyle}>Schedule</a>
               </motion.div>
               <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
+              <Link to="/gallery" style={linkStyle}>Gallery</Link>
+            </motion.div>
+              <motion.div variants={linkItemVariants} whileHover="hover" whileTap="tap">
                 <Link to="/contact" style={linkStyle}>Contact</Link>
               </motion.div>
             </div>

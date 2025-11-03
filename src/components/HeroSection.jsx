@@ -39,15 +39,15 @@ function HeroSection() {
     pointerEvents: 'none', // Prevent accidental interaction on mobile
   };
 
-  const overlayStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Dark overlay
-    zIndex: 2, // Above video, below text
-  };
+  // const overlayStyle = {
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   width: '100%',
+  //   height: '100%',
+  //   backgroundColor: 'rgba(0, 0, 0, 0.5)', // Dark overlay
+  //   zIndex: 2, // Above video, below text
+  // };
 
   const contentStyle = {
     position: 'relative',
@@ -156,4 +156,4 @@ function HeroSection() {
   );
 }
 
-export default HeroSection;
+export default HeroSection; 

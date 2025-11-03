@@ -81,6 +81,9 @@ function MobileMenu({ closeMenu }) {
           <a href="/#schedule" style={menuLinkStyle} onClick={closeMenu}>Schedule</a>
         </motion.div>
         <motion.div variants={linkVariants}>
+          <Link to="/gallery" style={menuLinkStyle} onClick={closeMenu}>Gallery</Link>
+        </motion.div>
+        <motion.div variants={linkVariants}>
           <Link to="/contact" style={menuLinkStyle} onClick={closeMenu}>Contact</Link>
         </motion.div>
       </motion.div>
