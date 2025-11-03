@@ -33,7 +33,7 @@ function HeroSection() {
     width: '100vw',
     height: '100%',
     minHeight: '100%',
-    objectFit: 'cover', // Covers the whole area
+    // objectFit: 'cover', // Covers the whole area
     transform: 'translateX(-50%)',
     zIndex: 1, // Behind content
     pointerEvents: 'none', // Prevent accidental interaction on mobile
