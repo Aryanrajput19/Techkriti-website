@@ -1,4 +1,3 @@
-// src/pages/HomePage.jsx
 import React from 'react';
 import { Slide } from "react-awesome-reveal";
 
@@ -8,6 +7,7 @@ import RegisterButton from '../components/RegisterButton.jsx';
 import AboutSection from '../components/AboutSection.jsx';
 import EventPreviewSection from '../components/EventPreviewSection.jsx';
 import GallerySection from '../components/GallerySection.jsx';
+import ScheduleSection from '../components/ScheduleSection.jsx';
 
 function HomePage() {
 
@@ -47,6 +47,8 @@ function HomePage() {
 
       {/* Section 4: The "Events Preview" Section */}
       <EventPreviewSection />
+
+      <ScheduleSection /> 
 
       {/* Section 5: The "Gallery" Section */}
       <GallerySection />
