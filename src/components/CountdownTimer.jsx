@@ -38,7 +38,7 @@ function CountdownTimer() {
   // --- Styling ---
   const timerWrapperStyle = {
     display: 'flex',
-    gap: '0.5rem',
+    gap: '0 rem',
     justifyContent: 'center',
     marginTop: '2rem'
     

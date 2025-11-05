@@ -17,11 +17,11 @@ function HomePage() {
     textAlign: 'center',
     // backgroundColor: '#121212',
     position: 'relative',
-    zIndex: 1,
+    zIndex: 0,
   };
 
   const timerTitleStyle = {
-    fontSize: '2rem',
+    fontSize: '1rem',
     color: '#aaa',
     marginBottom: '-0.5rem'
   };
