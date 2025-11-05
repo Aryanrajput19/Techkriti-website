@@ -38,9 +38,10 @@ function CountdownTimer() {
   // --- Styling ---
   const timerWrapperStyle = {
     display: 'flex',
-    gap: '1rem',
+    gap: '0.5rem',
     justifyContent: 'center',
     marginTop: '2rem'
+    
   };
 
   const timeUnitStyle = {

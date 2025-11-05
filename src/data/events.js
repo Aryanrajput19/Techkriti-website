@@ -155,10 +155,7 @@ export const eventData = [
       faculty: ['Mr. Awanish Upadhyay', 'Mr. Ashish Dubey'],
       student: ['Akash Verma', 'Saket Singh', 'Ujjwal Singh']
     },
-    // prizes: {
-    //   first: 'Top 2 will receive Ranking certificates and trophies or Cash prize (if possible).',
-    //   second: 'Participation certificates for all (soft copy).'
-    // }
+    
   },
 
   {
@@ -185,13 +182,10 @@ export const eventData = [
       "All code must be written/debugged individually."
     ],
     coordinators: {
-      faculty: ['Mr. Awanish Upadhyay', 'Ms. Archana'],
+      faculty: ['Mr. Jitendra Kumar', 'Mr. Himanshu'],
       student: ['Sushil Kumar Kushwaha', 'Praveen Pandey', 'Naman Tiwari']
     },
-    // prizes: {
-    //   first: 'Best Debugger Award, Fastest Debugger Award, Best Logic Analyzer Award.',
-    //   second: 'Evaluation based on Accuracy, Speed, and Logic.'
-    // }
+   
   },
   {
     id: 6,
@@ -215,10 +209,7 @@ export const eventData = [
       faculty: ['Mr. Jitendra Kumar','Mr. Deepak Vishwakarma'],
       student: ['Rahul Singh Yadav', 'Ritik Dubey', 'Tejas Pathak']
     },
-    // prizes: {
-    //   first: 'Prizes for winners.',
-    //   second: 'Fair play and sportsmanship are mandatory.'
-    // }
+ 
   },
 
   {
@@ -285,7 +276,7 @@ export const eventData = [
       "There will be time limits for each question/round."
     ],
     coordinators: {
-      faculty: ['Ms. Priya Srivastava', 'Ms. Maneesha'],
+      faculty: ['Ms. Neha Tiwari', 'Ms. Maneesha'],
       student: ['Riya Maurya', 'Saumya Singh', 'Tejas Pathak']
     },
     prizes: {
@@ -312,7 +303,7 @@ export const eventData = [
     judgingCriteria: [
       { title: 'Correctness', percent: '60%' },
       { title: 'Logic Flow', percent: '20%' },
-      { title: 'Efficiency', percent: '10%' },
+      { title: 'Efficiency', percent: '20%' },
       { title: 'Readability', text: 'Judged on proper indentation, naming, and flow.'}
     ],
     rules: [
@@ -357,12 +348,9 @@ export const eventData = [
     ],
     coordinators: {
       faculty: ['Mr. Anil Kumar Yadav', 'Mr. Gorakh Kumar Yadav'],
-      student: ['Sushil Kumar Kushwaha', 'Sandeep Yadav', 'Ujjwal Singh']
+      student: ['Saurabh Sahani', 'Naman Tiwari', 'Neelakshi Sinha']
     },
-    // prizes: {
-    //   first: 'Awards for top performers in speed and accuracy.',
-    //   second: 'Certificates of participation.'
-    // }
+    
   },
 
   {
@@ -454,10 +442,7 @@ export const eventData = [
       faculty: ['Ms. Priya Srivastava', 'Ms. Pragati Bhattacharya'],
       student: ['Sushil Kumar Kushwaha', 'Sandeep Yadav', 'Ujjwal Singh']
     },
-    // prizes: {
-    //   first: 'Highest total score from both segments wins.',
-    //   second: 'Challenge your brain and have fun!'
-    // }
+  
   },
 
   {
@@ -486,13 +471,10 @@ export const eventData = [
       "Teams must submit final escape confirmation for judges to verify."
     ],
     coordinators: {
-      faculty: ['Mr. Gyanendra Singh', 'Mr. Rajesh Verma'],
+      faculty: ['Ms. Vaishnavi ', 'Mr. Deepak Vishwakarma'],
       student: ['Shailendra Dubey','Gaurav Yadav','Tejas Pathak']
     },
-    // prizes: {
-    //   first: 'Awards for the fastest and most efficient teams.',
-    //   second: 'Certificates for participants.'
-    // }
+   
   }
 ];
 
